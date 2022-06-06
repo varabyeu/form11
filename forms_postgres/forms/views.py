@@ -17,7 +17,7 @@ def create_form(request):
     if request.method == 'POST':
         if formset.is_valid():
             data_from_form = {
-                str(id(formset)): formset.cleaned_data[0]['data'],
+                str(id(formset)): formset.cleaned_data[0].get('data')
             }
             data_json = json.dumps(data_from_form)
             save_to_db(data_json)

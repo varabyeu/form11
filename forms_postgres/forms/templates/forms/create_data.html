@@ -1,10 +1,43 @@
 {% extends 'forms/base.html' %}
 {% block content %}
 <!DOCTYPE html>
-    <form method="POST">
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        {{ formset.management_form }}-->
+<!--        {% for form in formset %}-->
+<!--            {{ form.as_table }}-->
+<!--        <button id="add-form" type="button">ADD</button>-->
+<!--        {% endfor %}-->
+<!--    </form>-->
+    <form id="form-container" method="POST">
         {% csrf_token %}
         {{ formset.management_form }}
-        {{ formset }}
-        <button>ADD</button>
+        {% for form in formset %}
+            <div class="form">{{form.as_p}}
+            <button type="submit">Save data to DB</button><br></div>
+        {% endfor %}
+        <button id="add-form" type="button">ADD</button>
     </form>
+    <script>
+        let dataForm = document.querySelectorAll(".form")
+        let container = document.querySelector("#form-container")
+        let addButton = document.querySelector("#add-form")
+        let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+        let formNum = dataForm.length-1
+        addButton.addEventListener('click', addForm)
+
+        function addForm(e){
+            e.preventDefault()
+
+            let newForm = dataForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            container.insertBefore(newForm, addButton)
+
+            totalForms.setAttribute('value', `${formNum+1}`)
+        }
+    </script>
 {% endblock %}
