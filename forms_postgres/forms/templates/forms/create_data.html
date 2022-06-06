@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create data</title>
+</head>
+<body>
+    <h1>Create data</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {{ formset }}
+        <button>ADD</button>
+
+    </form>
+</body>
+</html>
