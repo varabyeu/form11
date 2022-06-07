@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Data</title>
+    <style>
+      table,
+      table td {
+        border: 1px solid #cccfcc;
+      }
+      td {
+        height: 80px;
+        width: 160px;
+        text-align: center;
+        vertical-align: middle;
+      }
+    </style>
 </head>
 <body>
-    {% for data in data_from_db %}
-        {{ data.id }} {{ data.data }}
-        <hr>
-        <br>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+        </tr>
+        {% for data in data_from_db %}
+        <tr>
+
+            <td>{{ data.id }}</td>
+            <td>{{ data.data }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
