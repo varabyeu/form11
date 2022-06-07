@@ -1,3 +1,4 @@
 from django.contrib import admin
 
-# Register your models here.
+# There were no requirements to register model in admin panel,
+# well, for this reason models weren't registered

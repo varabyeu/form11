@@ -1,6 +1,14 @@
 import psycopg2
 import psycopg2 as db
 
+"""Connection to db
+
+This module was created to connect to the database. 
+At first I didn't understand the requirements to the database,
+I read that one like to save data without using models.
+Finally I understood what it means, but decided not to 
+delete this file
+"""
 
 HOST_NAME = 'localhost'
 USERNAME = 'user_form'
