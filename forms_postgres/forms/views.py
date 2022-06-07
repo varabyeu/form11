@@ -44,3 +44,22 @@ def create_form(request):
                         # save_to_db(data_json)
             return redirect('create-form')
     return render(request, 'forms/create_data.html', context)
+
+
+def show_data(request):
+    """Func to render data from db"""
+    # In this case there wasn't requirements how to display data
+    # I decided to reconvert values to the string to show it
+
+    # iterate over the queryset data to get values to reconvert it
+    data_from_db = DataToSave.objects.all().values()
+    for row in data_from_db:
+        if row['data'] == '""':
+            # If there was no entered information, we display the text
+            row['data'] = 'Nothing entered'
+        # deleting quotes
+        row['data'] = row['data'].strip('"')
+    context = {
+        'data_from_db': data_from_db
+    }
+    return render(request, 'forms/show_data.html', context)
